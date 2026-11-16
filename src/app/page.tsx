@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { ButtonLink, Container, CTA, Section, SectionHeading } from "@/components/ui";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Icon } from "@/components/Icon";
+import { HeroVisual } from "@/components/HeroVisual";
 import { featuredServices, pillars, servicesByPillar } from "@/data/services";
 import { process, whyChooseUs } from "@/data/content";
 import { site } from "@/lib/site";
@@ -12,8 +13,8 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="border-b border-gray-100">
-        <Container className="py-20 sm:py-28">
-          <div className="max-w-3xl">
+        <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.1fr_1fr]">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-brand-700">ITES · BPO · Software</p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
               Operations and software teams that work as part of yours
@@ -29,6 +30,7 @@ export default function HomePage() {
               </ButtonLink>
             </div>
           </div>
+          <HeroVisual />
         </Container>
       </section>
 
