@@ -4,14 +4,14 @@
  */
 const env = (value: string | undefined, fallback: string) => (value && value.trim() ? value.trim() : fallback);
 
-const phone = env(process.env.NEXT_PUBLIC_PHONE, "+880 1700-000000");
+const phone = env(process.env.NEXT_PUBLIC_PHONE, "+1 (212) 555-0100");
 const whatsapp = env(process.env.NEXT_PUBLIC_WHATSAPP, phone).replace(/\D/g, "");
-const email = env(process.env.NEXT_PUBLIC_EMAIL, "info@pitech.com.bd");
-const address = env(process.env.NEXT_PUBLIC_ADDRESS, "House 00, Road 00, Dhaka, Bangladesh");
+const email = env(process.env.NEXT_PUBLIC_EMAIL, "info@pitechusa.com");
+const address = env(process.env.NEXT_PUBLIC_ADDRESS, "New York, NY 10001, USA");
 
 export const site = {
   name: env(process.env.NEXT_PUBLIC_SITE_NAME, "Pi Tech"),
-  url: env(process.env.NEXT_PUBLIC_SITE_URL, "https://www.pitech.com.bd").replace(/\/$/, ""),
+  url: env(process.env.NEXT_PUBLIC_SITE_URL, "https://www.pitechusa.com").replace(/\/$/, ""),
   tagline: "Real estate operations, back-office services and software",
   description:
     "Pi Tech is an ITES, BPO and software company. We run back-office operations for real estate and property services firms and build the software that makes those operations smarter.",
@@ -23,7 +23,7 @@ export const site = {
   emailHref: `mailto:${email}`,
   address,
   mapQuery: env(process.env.NEXT_PUBLIC_MAP_QUERY, address),
-  hours: env(process.env.NEXT_PUBLIC_HOURS, "Sunday – Thursday, 9:00 AM – 6:00 PM"),
+  hours: env(process.env.NEXT_PUBLIC_HOURS, "Monday – Friday, 9:00 AM – 6:00 PM (ET)"),
   socials: [
     { label: "Facebook", href: process.env.NEXT_PUBLIC_FACEBOOK ?? "" },
     { label: "Instagram", href: process.env.NEXT_PUBLIC_INSTAGRAM ?? "" },
