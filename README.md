@@ -1,35 +1,48 @@
-# Nexvia Limited — website
+# Pi Tech — website
 
-Showcase website for a Bangladesh-based ITES / BPO and software company. Services mirror itxlimited.com: US real estate operations (property preservation, maintenance & renovation, rehab), back-office services, and software development. Alpine Infotech and AmatechBD contributed QA, UI/UX, cloud, marketing, engagement models and pricing ideas.
+Static marketing site: Home, About, Services (+ one page per service) and Contact.
+16 ITES/BPO/software services in 3 practices (modelled on itxlimited.com).
 
-## Stack
+Built with Next.js (static export) + Tailwind CSS. No server, database or CMS — the build output is plain HTML/CSS/JS.
 
-Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · framer-motion · lucide-react. No CMS. All content is typed data.
+## Change address, phone, email, WhatsApp
+
+All contact details live in **`.env`** (see `.env.example` for every option):
+
+| Variable | Used for |
+|---|---|
+| `NEXT_PUBLIC_SITE_NAME` | Company name in titles, footer, © line |
+| `NEXT_PUBLIC_SITE_URL` | Live domain (sitemap, SEO) |
+| `NEXT_PUBLIC_PHONE` | Phone shown everywhere + click-to-call |
+| `NEXT_PUBLIC_WHATSAPP` | WhatsApp number, digits with country code (empty = phone number) |
+| `NEXT_PUBLIC_EMAIL` | Email shown everywhere + contact form "Send via email" |
+| `NEXT_PUBLIC_ADDRESS` | Office address (top bar, footer, contact page) |
+| `NEXT_PUBLIC_MAP_QUERY` | Google Maps search on the contact page (empty = address) |
+| `NEXT_PUBLIC_HOURS` | Working hours |
+| `NEXT_PUBLIC_FACEBOOK` / `_INSTAGRAM` / `_LINKEDIN` | Social links (empty = hidden) |
+
+After editing `.env`:
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build && npm start
+npm install      # first time only
+npm run build    # writes the finished site to ./out
 ```
 
-## Where content lives
+Upload the **contents of `out/`** to any static host (cPanel public_html, Netlify, Vercel, GitHub Pages, S3…).
 
-| File | What it controls |
-| --- | --- |
-| `src/data/company.ts` | Brand, phones (BD + US), emails, office, hours, stats, memberships, tech stack. **All placeholder.** |
-| `src/data/services.ts` | 3 practices and 16 services: capabilities, deliverables, outcomes, tools, FAQs |
-| `src/data/content.ts` | Industries, engagement models and pricing, process, case studies, testimonials, FAQs, jobs, benefits, insights |
+> Values are baked in at build time — editing `.env` on the server does nothing until you rebuild and re-upload.
 
-## Interactive features
+## Other edits
 
-- Live "operations desk" dashboard in the hero, plus Dhaka / New York clocks with US-desk online status
-- Practice explorer tabs, tech-stack filter, case-study filter, testimonial slider, searchable FAQ, filterable job board
-- Offshore savings calculator, which hands the chosen team to the project brief
-- **Get Started** wizard: needs → scope → discovery call in the visitor's time zone (DST-aware conversion to Dhaka time) → contact → review. It sends via email or WhatsApp (no backend).
+- Services: `src/data/services.ts`
+- Page copy (about, why choose us…): `src/data/content.ts`
+- Brand colour: `--color-brand-*` in `src/app/globals.css`
+- Logos: `public/brand/` (SVG + PNG); favicon: `src/app/icon.svg`
 
-## Before launch
+## Local preview
 
-- Replace placeholder name, contacts, address, stats, memberships (BASIS, ISO wording), leadership and testimonials.
-- Case studies are written anonymously ("client names withheld under NDA"). Replace them with real, approved results.
-- Have the privacy and terms text reviewed.
-- Set `siteUrl` in `company.ts`.
+```bash
+npm run dev      # http://localhost:3000
+```
+
+The contact form needs no backend: it opens WhatsApp or the visitor's email app with the message pre-filled.
